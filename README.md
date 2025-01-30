@@ -17,13 +17,16 @@ The Swipe Assignment app is an offline-first product management application buil
 ## Screenshots
 
 ### Splash Screen
-![Splash Screen](screenshots/splash_screen.png)
+![Splash Screen](screenshots/splash.png)
 
 ### Home Screen with Product List
-![Home Screen](screenshots/home_screen.png)
+![Home Screen](screenshots/home.png)
+
+### Add Product Bottom Sheet
+![Product Screen](screenshots/add_product.png)
 
 ## Demo Video
-[Click here to watch the demo video](demo_video.mp4)
+[Click here to watch the demo video](screenshots/demo.mp4)
 
 ## Prerequisites
 
