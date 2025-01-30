@@ -37,13 +37,17 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             Swipe_ProjectTheme {
-
-                val navController = rememberNavController()
-                NavHost(navController = navController, startDestination = "splash") {
-                    composable("splash") { SplashScreen(){
-                        navController.navigate("home") } }
-                    composable("home") { HomeScreen() }
+                Scaffold {
+                    pading->
+                    val navController = rememberNavController()
+                    NavHost(navController = navController, startDestination = "splash",
+                        modifier = Modifier.padding(pading)) {
+                        composable("splash") { SplashScreen(){
+                            navController.navigate("home") } }
+                        composable("home") { HomeScreen() }
+                    }
                 }
+
             }
         }
     }

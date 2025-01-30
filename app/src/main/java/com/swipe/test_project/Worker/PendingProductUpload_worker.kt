@@ -9,9 +9,6 @@ import com.swipe.test_project.Repository.Product_Repository
 import com.swipe.test_project.Room.ProductDatabase
 import com.swipe.test_project.ViewModel.ProductViewModel
 import com.swipe.test_project.utils.Network_utils
-
-
-
 import org.koin.core.component.KoinComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
