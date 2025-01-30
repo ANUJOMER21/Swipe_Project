@@ -54,7 +54,7 @@ fun AddProductBottomSheet(onDismiss: () -> Unit, viewModel: ProductViewModel = k
     var errorMessage by remember { mutableStateOf<String?>(null) } // Error message for validation
     var showSuccessDialog by remember { mutableStateOf(false) } // Show success dialog
 
-    // Register the activity result contract for image selection
+
     val imagePickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent(),
         onResult = { uri ->
@@ -64,7 +64,6 @@ fun AddProductBottomSheet(onDismiss: () -> Unit, viewModel: ProductViewModel = k
         }
     )
 
-    // Collect the addProductStatus SharedFlow
     LaunchedEffect(key1 = viewModel) {
         viewModel.addProductStatus.collect { response ->
             when (response) {
@@ -81,7 +80,7 @@ fun AddProductBottomSheet(onDismiss: () -> Unit, viewModel: ProductViewModel = k
                 is ApiResponse.Error -> {
                     isLoading = false
                     addProductResponse = "Failed to add product: ${response.message}"
-                    // Show a notification or dialog to the user for failure
+
                 }
             }
         }
@@ -99,7 +98,7 @@ fun AddProductBottomSheet(onDismiss: () -> Unit, viewModel: ProductViewModel = k
         }
         return name.ifEmpty { "image_${System.currentTimeMillis()}.jpg" }
     }
-    // Function to convert URI to File
+
     fun uriToFile(uri: Uri): File? {
         return try {
             val contentResolver: ContentResolver = context.contentResolver
@@ -125,16 +124,16 @@ fun AddProductBottomSheet(onDismiss: () -> Unit, viewModel: ProductViewModel = k
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)
-            .verticalScroll(rememberScrollState()) // Allow scrolling if keyboard appears
+            .verticalScroll(rememberScrollState())
     ) {
-        // Title
+
         Text(
             text = "Add Product",
             style = MaterialTheme.typography.headlineSmall,
-            modifier = Modifier.padding(bottom = 16.dp) // Space after title
+            modifier = Modifier.padding(bottom = 16.dp)
         )
 
-        // Product Name, Type, Price, Tax - TextFields...
+
         OutlinedTextField(
             value = productName,
             onValueChange = { productName = it },
@@ -162,7 +161,7 @@ fun AddProductBottomSheet(onDismiss: () -> Unit, viewModel: ProductViewModel = k
             modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
         )
 
-        // Product Image Section
+
         Column(
             modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
         ) {
@@ -178,7 +177,7 @@ fun AddProductBottomSheet(onDismiss: () -> Unit, viewModel: ProductViewModel = k
                 Text(text = if (productImageUri != null) "Change Image" else "Select Image")
             }
 
-            // Show the selected image preview
+
             productImageUri?.let {
                 Spacer(modifier = Modifier.height(8.dp))
                 val painter = rememberAsyncImagePainter(it)
@@ -193,13 +192,13 @@ fun AddProductBottomSheet(onDismiss: () -> Unit, viewModel: ProductViewModel = k
             }
         }
 
-        // Show loading progress dialog
+
         if (isLoading) {
             CircularProgressIndicator(modifier = Modifier.align(Alignment.CenterHorizontally))
         }
 
 
-        // Show error message if validation fails
+
         errorMessage?.let {
             Text(
                 text = it,
@@ -210,7 +209,7 @@ fun AddProductBottomSheet(onDismiss: () -> Unit, viewModel: ProductViewModel = k
             )
         }
         val isNetworkavailble=Network_utils.isNetworkAvailableSimplified(LocalContext.current)
-        // Add Product Button
+
         Button(
             onClick = {
                 // Validate fields
@@ -230,7 +229,7 @@ fun AddProductBottomSheet(onDismiss: () -> Unit, viewModel: ProductViewModel = k
 
                     productImageUri = null // Clear the URI
 
-                    //onDismiss() // Dismiss the bottom sheet after adding the product
+                    //onDismiss()
                 }
             },
             modifier = Modifier.fillMaxWidth().padding(top = 16.dp)

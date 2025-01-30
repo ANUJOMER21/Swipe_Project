@@ -30,7 +30,7 @@ fun ProductItem(product: ProductModel) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(0.dp) // Padding around the card
+            .padding(0.dp)
             .border(BorderStroke(1.dp, Color.Black), RoundedCornerShape(16.dp))
             .background(Color.White, shape = RoundedCornerShape(16.dp))
             //.shadow(8.dp, shape = RoundedCornerShape(16.dp))
@@ -38,10 +38,10 @@ fun ProductItem(product: ProductModel) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp) // Padding inside the card
+                .padding(16.dp)
         ) {
 
-            // Image section - Full width image with rounded corners
+
             val imagePainter = when {
                 product.product_image.isEmpty() -> painterResource(R.drawable.img)
                 product.image_type == image_type.net -> rememberAsyncImagePainter(product.product_image)

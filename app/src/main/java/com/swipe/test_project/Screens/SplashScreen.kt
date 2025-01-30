@@ -60,16 +60,14 @@ fun SplashScreen(viewModel: ProductViewModel = koinViewModel(), navigateToHome: 
 
     val syncStatus by rememberUpdatedState(viewModel.syncStatus)
 
-    // Check and request permission when the screen loads
     LaunchedEffect(Unit) {
         if (!checkPermissions(context)) {
             requestPermissions(permissionLauncher)
         } else {
-            viewModel.syncProducts() // Start syncing if permission is already granted
+            viewModel.syncProducts()
         }
     }
 
-    // Listen for sync completion
     LaunchedEffect(syncStatus) {
         syncStatus.collect {
             navigateToHome()
